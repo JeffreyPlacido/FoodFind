@@ -5,8 +5,10 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import firebase from "firebase";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
-import HomePageSignIn from "./HomePageSignIn";
+import Login from "./Login";
 import HomePage from "./HomePage";
 import Profile from "./Profile";
 import GroceryList from "./GroceryList";
@@ -17,7 +19,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route exact path="/">
-          <HomePageSignIn />
+          <Login />
         </Route>
         <Route exact path="/homepage">
           <HomePage />
