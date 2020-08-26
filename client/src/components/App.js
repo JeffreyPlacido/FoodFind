@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
-import firebase from "firebase";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Login from "./Login";
 import HomePage from "./HomePage";

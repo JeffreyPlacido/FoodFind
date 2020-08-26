@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 import withFirebaseAuth from "react-with-firebase-auth";
 import * as firebase from "firebase";
@@ -28,8 +28,8 @@ function signInWithEmail(email, password) {
 }
 
 const AuthProvider = ({ children, signOut, user }) => {
-  const [appUser, setAppUser] = useState({});
-  const [message, setMessage] = useState("");
+  const [appUser, setAppUser] = useState(null);
+  // const [message, setMessage] = useState("");
 
   const handleSignOut = () => {
     signOut();
@@ -42,26 +42,12 @@ const AuthProvider = ({ children, signOut, user }) => {
     return firebase.auth().signInWithPopup(googleProvider);
   };
 
-  //   useEffect(() => {
-  //     if (user) {
-  //       fetch("/users", {
-  //         method: "post",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           email: user.email,
-  //           amountDue: "$15",
-  //         }),
-  //       })
-  //         .then((response) => response.json())
-  //         .then((data) => {
-  //           setAppUser(data.data);
-  //           setMessage(data.message);
-  //         });
-  //     }
-  //   }, [user]);
-
+  useEffect(() => {
+    if (user && Object.keys(user).length > 0) {
+      setAppUser(user);
+    }
+  }, [user]);
+  console.log(appUser, "---APP USER");
   return (
     <AuthContext.Provider
       value={{
@@ -71,7 +57,7 @@ const AuthProvider = ({ children, signOut, user }) => {
         signInWithGoogle,
         handleSignOut,
 
-        message,
+        // message,
       }}
     >
       {children}
