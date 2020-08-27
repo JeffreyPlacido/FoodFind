@@ -12,22 +12,28 @@ const options = {
 };
 
 const handleUserGroceries = async (req, res) => {
-  const client = await MongoClient(MONGO_URI, options);
+  const email = req.body.email;
 
-  await client.connect();
+  try {
+    const client = await MongoClient(MONGO_URI, options);
 
-  const db = client.db("foodfind");
+    await client.connect();
 
-  const r = await db.collection("groceries").find().toArray();
+    const db = client.db("foodfind");
 
-  client.close();
+    const r = await db.collection("groceries").find({ email }).toArray();
 
-  res.status(200).json({ data: r });
+    client.close();
+
+    res.status(200).json({ data: r });
+  } catch ({ message }) {
+    res.status(500).json({ status: 500, message });
+  }
 };
 
 const handleUserFavorites = async (req, res) => {
   const email = req.body.email;
-  console.log(email, "EMAIL");
+
   try {
     const client = await MongoClient(MONGO_URI, options);
 

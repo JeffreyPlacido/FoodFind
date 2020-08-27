@@ -15,7 +15,7 @@ const {
   handleDeleteGroceries,
 } = require("./handlers");
 
-app.get("/usergroceries", handleUserGroceries);
+app.post("/usergroceries", handleUserGroceries);
 app.post("/userfavorites", handleUserFavorites);
 
 app.post("/user", handleGetUser);
