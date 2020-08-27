@@ -11,6 +11,34 @@ const options = {
   useUnifiedTopology: true,
 };
 
+const handleUserGroceries = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+
+  await client.connect();
+
+  const db = client.db("foodfind");
+
+  const r = await db.collection("groceries").find().toArray();
+
+  client.close();
+
+  res.status(200).json({ data: r });
+};
+
+const handleUserFavorites = async (req, res) => {
+  const client = await MongoClient(MONGO_URI, options);
+
+  await client.connect();
+
+  const db = client.db("foodfind");
+
+  const r = await db.collection("favorites").find().toArray();
+
+  client.close();
+
+  res.status(200).json({ data: r });
+};
+
 async function handleGetUser(req, res) {
   console.log(req.body);
   try {
@@ -173,4 +201,6 @@ module.exports = {
   handleGetGroceries,
   handleGetFavorites,
   handleDeleteGroceries,
+  handleUserGroceries,
+  handleUserFavorites,
 };
