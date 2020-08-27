@@ -2,7 +2,7 @@ import React from "react";
 import sendGroceries from "./grocerybutton";
 import sendFavorites from "./favoritesbutton";
 
-const Recipe = ({ title, calories, image, ingredients, email }) => {
+const Recipe = ({ title, image, ingredients, email, dietLabels, url }) => {
   console.log(ingredients, "INGREDIENTS");
   return (
     <div>
@@ -18,14 +18,14 @@ const Recipe = ({ title, calories, image, ingredients, email }) => {
       <>
         <button
           onClick={() => {
-            sendFavorites(title, ingredients, email);
+            sendFavorites(title, ingredients, email, dietLabels, url);
           }}
         >
           add to favorites
         </button>
         <button
           onClick={() => {
-            sendGroceries(title, ingredients, email);
+            sendGroceries(title, ingredients, email, dietLabels, url);
           }}
         >
           add to groceries

@@ -26,17 +26,23 @@ const handleUserGroceries = async (req, res) => {
 };
 
 const handleUserFavorites = async (req, res) => {
-  const client = await MongoClient(MONGO_URI, options);
+  const email = req.body.email;
+  console.log(email, "EMAIL");
+  try {
+    const client = await MongoClient(MONGO_URI, options);
 
-  await client.connect();
+    await client.connect();
 
-  const db = client.db("foodfind");
+    const db = client.db("foodfind");
 
-  const r = await db.collection("favorites").find().toArray();
+    const r = await db.collection("favorites").find({ email }).toArray();
 
-  client.close();
+    client.close();
 
-  res.status(200).json({ data: r });
+    res.status(200).json({ data: r });
+  } catch ({ message }) {
+    res.status(500).json({ status: 500, message });
+  }
 };
 
 async function handleGetUser(req, res) {

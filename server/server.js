@@ -16,7 +16,7 @@ const {
 } = require("./handlers");
 
 app.get("/usergroceries", handleUserGroceries);
-app.get("/userfavorites", handleUserFavorites);
+app.post("/userfavorites", handleUserFavorites);
 
 app.post("/user", handleGetUser);
 

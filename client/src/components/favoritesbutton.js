@@ -1,4 +1,10 @@
-export default function sendFavorites(label, groceries, email) {
+export default function sendFavorites(
+  label,
+  groceries,
+  email,
+  dietLabels,
+  url
+) {
   fetch("/addfavorites", {
     method: "post",
     headers: {
@@ -8,6 +14,8 @@ export default function sendFavorites(label, groceries, email) {
       ordernumber: label,
       groceries: groceries,
       email: email,
+      dietLabels: dietLabels,
+      url: url,
     }),
   }).then((response) => response.json());
 }

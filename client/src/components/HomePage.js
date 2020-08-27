@@ -58,6 +58,8 @@ export default function HomePage() {
             image={recipe.recipe.image}
             ingredients={recipe.recipe.ingredients}
             email={appUser.email}
+            dietLabels={recipe.recipe.dietLabels}
+            url={recipe.recipe.url}
           />
         );
       })}

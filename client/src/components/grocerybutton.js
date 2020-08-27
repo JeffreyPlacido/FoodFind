@@ -1,4 +1,10 @@
-export default function sendGroceries(label, groceries, email) {
+export default function sendGroceries(
+  label,
+  groceries,
+  email,
+  dietLabels,
+  url
+) {
   fetch("/addgroceries", {
     method: "post",
     headers: {
@@ -8,6 +14,8 @@ export default function sendGroceries(label, groceries, email) {
       ordernumber: label,
       groceries: groceries,
       email: email,
+      dietLabels: dietLabels,
+      url: url,
     }),
   }).then((response) => response.json());
 }
