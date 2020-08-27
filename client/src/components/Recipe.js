@@ -1,10 +1,12 @@
 import React from "react";
+import sendGroceries from "./grocerybutton";
+import sendFavorites from "./favoritesbutton";
 
-const Recipe = ({ title, calories, image, ingredients }) => {
+const Recipe = ({ title, calories, image, ingredients, email }) => {
+  console.log(ingredients, "INGREDIENTS");
   return (
     <div>
       <h1>{title}</h1>
-      <p>{calories}</p>
       <img src={image} alt="" />
       <ol>
         {ingredients.map((ingredients, index) => (
@@ -14,8 +16,20 @@ const Recipe = ({ title, calories, image, ingredients }) => {
         ))}
       </ol>
       <>
-        <button>add to favorites</button>
-        <button>add to groceries</button>
+        <button
+          onClick={() => {
+            sendFavorites(title, ingredients, email);
+          }}
+        >
+          add to favorites
+        </button>
+        <button
+          onClick={() => {
+            sendGroceries(title, ingredients, email);
+          }}
+        >
+          add to groceries
+        </button>
       </>
     </div>
   );

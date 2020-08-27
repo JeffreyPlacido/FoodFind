@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Recipe from "./Recipe";
+import appUser from "./AuthContext";
+import { AuthContext } from "./AuthContext";
 require("dotenv").config();
 
 export default function HomePage() {
   const APP_ID = process.env.REACT_APP_APP_ID;
   const APP_KEY = process.env.REACT_APP_APP_KEY;
+  const { signInWithGoogle, appUser, setAppUser } = useContext(AuthContext);
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
@@ -33,7 +36,7 @@ export default function HomePage() {
     setSearch("");
   };
 
-  return (
+  return appUser ? (
     <div>
       <form onSubmit={getSearch} className="search-form">
         <input
@@ -48,17 +51,18 @@ export default function HomePage() {
       </form>
       {recipes.map((recipe, index) => {
         let theKey = index + Math.floor(Math.random() * 10000000);
-        console.log("The key: ", theKey);
         return (
           <Recipe
             key={theKey}
             title={recipe.recipe.label}
-            calories={recipe.recipe.calories}
             image={recipe.recipe.image}
             ingredients={recipe.recipe.ingredients}
+            email={appUser.email}
           />
         );
       })}
     </div>
+  ) : (
+    <div>loading</div>
   );
 }

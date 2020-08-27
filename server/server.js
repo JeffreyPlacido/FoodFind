@@ -2,13 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 08000;
 
 app.use(bodyParser.json());
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
 
 const {
   handleGetUser,
@@ -19,8 +15,8 @@ const {
 
 app.post("/user", handleGetUser);
 
-app.put("/addgroceries", handleGetGroceries);
-app.put("/addfavorites", handleGetFavorites);
+app.post("/addgroceries", handleGetGroceries);
+app.post("/addfavorites", handleGetFavorites);
 
 app.delete("/deletegroceries", handleDeleteGroceries);
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import { database } from "firebase";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Login() {
   const [loggedIn, setLoggedIn] = React.useState(false);
