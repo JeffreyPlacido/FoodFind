@@ -18,14 +18,14 @@ const Recipe = ({ title, image, ingredients, email, dietLabels, url }) => {
       <>
         <button
           onClick={() => {
-            sendFavorites(title, ingredients, email, dietLabels, url);
+            sendFavorites(title, ingredients, email, dietLabels, url, image);
           }}
         >
           add to favorites
         </button>
         <button
           onClick={() => {
-            sendGroceries(title, ingredients, email, dietLabels, url);
+            sendGroceries(title, ingredients, email, dietLabels, url, image);
           }}
         >
           add to groceries

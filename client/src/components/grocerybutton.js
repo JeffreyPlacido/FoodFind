@@ -3,7 +3,8 @@ export default function sendGroceries(
   groceries,
   email,
   dietLabels,
-  url
+  url,
+  image
 ) {
   fetch("/addgroceries", {
     method: "post",
@@ -16,6 +17,7 @@ export default function sendGroceries(
       email: email,
       dietLabels: dietLabels,
       url: url,
+      image: image,
     }),
   }).then((response) => response.json());
 }

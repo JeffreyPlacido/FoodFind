@@ -3,7 +3,8 @@ export default function sendFavorites(
   groceries,
   email,
   dietLabels,
-  url
+  url,
+  image
 ) {
   fetch("/addfavorites", {
     method: "post",
@@ -16,6 +17,7 @@ export default function sendFavorites(
       email: email,
       dietLabels: dietLabels,
       url: url,
+      image: image,
     }),
   }).then((response) => response.json());
 }

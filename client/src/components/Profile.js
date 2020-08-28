@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import appUser from "./AuthContext";
 import { AuthContext } from "./AuthContext";
+import Favori from "./Favori";
 
 export default function Profile() {
   const { appUser } = useContext(AuthContext);
@@ -29,16 +30,19 @@ export default function Profile() {
 
   return appUser ? (
     <>
-      {favorites.map((item) => (
-        <div>{item.ordernumber}</div>
-      ))}
-      {favorites.map((item) => (
-        <>
-          {item.groceries.map((groceries) => (
-            <div>{groceries.text}</div>
-          ))}
-        </>
-      ))}
+      {favorites.map((item, index) => {
+        let favNum = index + Math.floor(Math.random() * 10000);
+        return (
+          <Favori
+            key={favNum}
+            title={item.ordernumber}
+            image={item.image}
+            ingredients={item.groceries}
+            dietLabels={item.dietLabels}
+            url={item.url}
+          />
+        );
+      })}
     </>
   ) : (
     <div>loading</div>
