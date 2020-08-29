@@ -1,7 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
 import { database } from "firebase";
 import { useHistory } from "react-router-dom";
+import appBG from "../assests/appBG.jpeg";
+import styled from "styled-components";
+
+import { TweenMax, TimelineMax, Power3 } from "gsap";
 
 function Login() {
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -33,12 +37,56 @@ function Login() {
   }
 
   return (
-    <>
-      {" "}
-      <button onClick={handleGoogleSignIn}> Sign In with Google</button>
-      <div id="firebaseui-auth-container"></div>
-    </>
+    <Container>
+      <Hero>
+        <BG></BG>
+        <Position>
+          <Name>FoodFind</Name>
+        </Position>
+        <Button onClick={handleGoogleSignIn}> Sign In with Google</Button>
+        <div id="firebaseui-auth-container"></div>
+      </Hero>
+    </Container>
   );
 }
+
+const Position = styled.div`
+  position: absolute;
+  top: 30%;
+  left: 34%;
+  font-size: 80px;
+  color: darksalmon;
+`;
+
+const Button = styled.button`
+  width: 15%;
+  height: 3%;
+  position: absolute;
+  top: 55%;
+  left: 39%;
+  font-size: 20px;
+`;
+
+const Container = styled.div`
+  left: 0;
+  top: 0;
+`;
+
+const Hero = styled.div`
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+`;
+
+const BG = styled.div`
+  background: url(${appBG}) no-repeat;
+  background-size: cover;
+  margin-right: -1em;
+  margin-left: -1em;
+  width: 105%;
+  height: 103%;
+`;
+const Name = styled.h1``;
 
 export default Login;

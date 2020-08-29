@@ -1,5 +1,6 @@
 import React from "react";
 import sendGroceries from "./grocerybutton";
+import deleteFavorite from "./deletefavoritehelper";
 
 export default function Favori({
   title,
@@ -23,7 +24,13 @@ export default function Favori({
       <div>
         <a href={url}>Click to view Recipe</a>
       </div>
-      <button>Remove from Favorites</button>
+      <button
+        onClick={() => {
+          deleteFavorite(title, ingredients, email, dietLabels, url, image);
+        }}
+      >
+        Remove from Favorites
+      </button>
       <button
         onClick={() => {
           sendGroceries(title, ingredients, email, dietLabels, url, image);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import appUser from "./AuthContext";
 import { AuthContext } from "./AuthContext";
+import deleteGrocery from "./deleteGroceryHelper";
 
 export default function Profile() {
   const { appUser } = useContext(AuthContext);

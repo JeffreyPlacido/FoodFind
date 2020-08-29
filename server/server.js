@@ -13,17 +13,17 @@ const {
   handleUserGroceries,
   handleUserFavorites,
   handleDeleteGroceries,
+  handleDeleteFavorite,
 } = require("./handlers");
 
 app.post("/usergroceries", handleUserGroceries);
 app.post("/userfavorites", handleUserFavorites);
-
 app.post("/user", handleGetUser);
-
 app.post("/addgroceries", handleGetGroceries);
 app.post("/addfavorites", handleGetFavorites);
 
 app.delete("/deletegroceries", handleDeleteGroceries);
+app.delete("/deletefavorite", handleDeleteFavorite);
 
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);

@@ -56,8 +56,6 @@ const AuthProvider = ({ children, signOut, user }) => {
         signInWithEmail,
         signInWithGoogle,
         handleSignOut,
-
-        // message,
       }}
     >
       {children}
