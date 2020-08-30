@@ -19,5 +19,6 @@ export default function deleteFavorite(
       url: url,
       image: image,
     }),
-  }).then((response) => response.json());
+  }).then((response) => window.location.reload(true));
+  // .then((json) => console.log(response, "-------JSON"));
 }

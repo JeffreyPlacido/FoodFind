@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import Recipe from "./Recipe";
 import appUser from "./AuthContext";
 import { AuthContext } from "./AuthContext";
+import NavBar from "./Navbar";
 require("dotenv").config();
 
 export default function HomePage() {
@@ -38,6 +39,7 @@ export default function HomePage() {
 
   return appUser ? (
     <div>
+      <NavBar />
       <form onSubmit={getSearch} className="search-form">
         <input
           className="search-bar"
