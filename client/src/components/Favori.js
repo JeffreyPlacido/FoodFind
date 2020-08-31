@@ -1,6 +1,10 @@
 import React from "react";
 import sendGroceries from "./grocerybutton";
 import deleteFavorite from "./deletefavoritehelper";
+import appUser from "./AuthContext";
+import { AuthContext } from "./AuthContext";
+
+import styled from "styled-components";
 
 export default function Favori({
   title,
@@ -11,33 +15,98 @@ export default function Favori({
   url,
 }) {
   return (
-    <div>
-      <h1>{title}</h1>
-      <img src={image} alt="" />
+    <Fav>
+      <H1>{title}</H1>
+      <Img src={image} alt="" />
       <ol>
         {ingredients.map((ingredients, index) => (
-          <li key={index + Math.floor(Math.random() * 10000000)}>
+          <Li key={index + Math.floor(Math.random() * 10000000)}>
             {ingredients.text}
-          </li>
+          </Li>
         ))}
       </ol>
-      <div>
+      <Link>
         <a href={url}>Click to view Recipe</a>
-      </div>
-      <button
+      </Link>
+      <Button
         onClick={() => {
           deleteFavorite(title, ingredients, email, dietLabels, url, image);
         }}
       >
         Remove from Favorites
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={() => {
           sendGroceries(title, ingredients, email, dietLabels, url, image);
         }}
       >
         Add to Groceries
-      </button>
-    </div>
+      </Button>
+    </Fav>
   );
 }
+
+const Button = styled.button`
+  width: 10vw;
+  height: 4vh;
+  padding: 4px;
+  color: darkgreen;
+  background: mintcream;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  &:hover {
+    background: lightgreen;
+  }
+`;
+
+const Link = styled.div`
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  a {
+    text-decoration: none;
+    color: coral;
+  }
+  &:hover {
+    background: darkgreen;
+    border-radius: 10px;
+  }
+`;
+
+const Li = styled.li`
+  list-style-type: none;
+  font-size: 18px;
+  color: darkgreen;
+  padding: 2px;
+  font-weight: bold;
+`;
+
+const H1 = styled.h1`
+  color: darkgreen;
+`;
+
+const Img = styled.img`
+  border-radius: 50%;
+`;
+
+const Fav = styled.div`
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0px 5px 5px grey;
+  align-items: center;
+  justify-content: space-around;
+  background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+  width: 18vw;
+  margin-top: 2vh;
+  margin-bottom: 1vh;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  padding: 5px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+  }
+`;

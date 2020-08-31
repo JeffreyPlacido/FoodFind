@@ -3,6 +3,7 @@ import Recipe from "./Recipe";
 import appUser from "./AuthContext";
 import { AuthContext } from "./AuthContext";
 import NavBar from "./Navbar";
+import styled from "styled-components";
 require("dotenv").config();
 
 export default function HomePage() {
@@ -40,29 +41,33 @@ export default function HomePage() {
   return appUser ? (
     <div>
       <NavBar />
-      <form onSubmit={getSearch} className="search-form">
-        <input
-          className="search-bar"
-          type="text"
-          value={search}
-          onChange={updateSearch}
-        />
-        <button className="search-button" type="submit">
-          Find Recipe
-        </button>
-      </form>
+      <FormButton>
+        <form onSubmit={getSearch} className="search-form">
+          <Input
+            className="search-bar"
+            type="text"
+            value={search}
+            onChange={updateSearch}
+          />
+          <SButton className="search-button" type="submit">
+            Find Recipe
+          </SButton>
+        </form>
+      </FormButton>
       {recipes.map((recipe, index) => {
         let theKey = index + Math.floor(Math.random() * 10000000);
         return (
-          <Recipe
-            key={theKey}
-            title={recipe.recipe.label}
-            image={recipe.recipe.image}
-            ingredients={recipe.recipe.ingredients}
-            email={appUser.email}
-            dietLabels={recipe.recipe.dietLabels}
-            url={recipe.recipe.url}
-          />
+          <BoxBox>
+            <Recipe
+              key={theKey}
+              title={recipe.recipe.label}
+              image={recipe.recipe.image}
+              ingredients={recipe.recipe.ingredients}
+              email={appUser.email}
+              dietLabels={recipe.recipe.dietLabels}
+              url={recipe.recipe.url}
+            />
+          </BoxBox>
         );
       })}
     </div>
@@ -70,3 +75,45 @@ export default function HomePage() {
     <div>loading</div>
   );
 }
+
+const BoxBox = styled.div`
+  padding: 15px;
+  display: inline-block;
+  width: 100vw;
+  height: 100vh;
+`;
+
+const FormButton = styled.div`
+  height: 4vh;
+  width: 25vw;
+  z-index: 3;
+  display: flex;
+  position: absolute;
+  margin-left: 15vw;
+  margin-top: 15vh;
+`;
+
+const RecipeBox = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+`;
+
+const Input = styled.input`
+  width: 15vw;
+
+  padding: 10px;
+  height: 1vh;
+`;
+
+const SButton = styled.button`
+  background: lightgreen;
+
+  padding: 10px 20px;
+  color: darkgreen;
+  width: 8vw;
+  font-size: 1vh;
+  &:hover {
+    background-color: coral;
+  }
+`;
