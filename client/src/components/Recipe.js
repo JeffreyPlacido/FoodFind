@@ -15,20 +15,18 @@ const Recipe = ({ title, image, ingredients, email, dietLabels, url }) => {
           </Li>
         ))}
       </ol>
-      <div>
+      <URL>
         <a href={url}>Click to view Recipe</a>
-      </div>
+      </URL>
       <>
-        <button
+        <Button
           onClick={() => {
-            if (window.confirm("Add to Favorites?")) {
-              sendFavorites(title, ingredients, email, dietLabels, url, image);
-            }
+            sendFavorites(title, ingredients, email, dietLabels, url, image);
           }}
         >
           add to favorites
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => {
             if (window.confirm("Add to Groceries?")) {
               sendGroceries(title, ingredients, email, dietLabels, url, image);
@@ -36,28 +34,50 @@ const Recipe = ({ title, image, ingredients, email, dietLabels, url }) => {
           }}
         >
           add to groceries
-        </button>
+        </Button>
       </>
     </RecipeBox>
   );
 };
+
 const Title = styled.h1`
   color: Crimson;
+  padding: 5px;
+`;
+
+const URL = styled.div`
+  padding: 10px;
+`;
+
+const Button = styled.button`
+  width: 10vw;
+  height: 4vh;
+  padding: 4px;
+  color: darkgreen;
+  background: mintcream;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  &:hover {
+    background: coral;
+  }
 `;
 
 const RecipeBox = styled.div`
-  display: flex;
   border-radius: 10px;
   box-shadow: 0px 5px 5px grey;
-  align-items: center;
-  justify-content: space-around;
-  padding: 15px;
-  margin-top: 20vh;
-  background: lightgreen;
+  padding: 25px;
+  background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+  margin-left: 2vw;
+  margin-right: 2vw;
+  width: 400px;
+  margin-bottom: 5vh;
+  text-align: center;
 `;
 
 const Img = styled.img`
   border-radius: 50%;
+  padding: 5px;
   height: 250px;
   width: 200px;
 `;
@@ -66,6 +86,8 @@ const Li = styled.li`
   text-decoration: none;
   font-size: 18px;
   color: darkgreen;
+  padding: 5px;
+  list-style-type: none;
 `;
 
 export default Recipe;

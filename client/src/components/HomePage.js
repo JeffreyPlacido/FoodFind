@@ -4,6 +4,7 @@ import appUser from "./AuthContext";
 import { AuthContext } from "./AuthContext";
 import NavBar from "./Navbar";
 import styled from "styled-components";
+import HP from "../assests/HP.jpg";
 
 require("dotenv").config();
 
@@ -71,90 +72,110 @@ export default function HomePage() {
   };
 
   return appUser ? (
-    <div>
-      <NavBar />
-      <Fbutton
-        className="filter"
-        type="toggle"
-        style={{
-          backgroundColor: vegan === "" ? "lightgreen" : "coral",
-        }}
-        onClick={() => {
-          SelectVegan();
-        }}
-      >
-        Vegan
-      </Fbutton>
-      <Fbutton
-        className="filter"
-        type="toggle"
-        style={{
-          backgroundColor: peanuts === "" ? "lightgreen" : "coral",
-        }}
-        onClick={() => {
-          SelectPeanuts();
-        }}
-      >
-        No Peanuts
-      </Fbutton>
-      <Fbutton
-        className="filter"
-        type="toggle"
-        style={{
-          backgroundColor: vegetarian === "" ? "lightgreen" : "coral",
-        }}
-        onClick={() => {
-          SelectVegetarian();
-        }}
-      >
-        Vegetarian
-      </Fbutton>
-      <FormButton>
-        <form onSubmit={getSearch} className="search-form">
-          <Input
-            className="search-bar"
-            type="text"
-            value={search}
-            onChange={updateSearch}
-          />
-          <SButton className="search-button" type="submit">
-            Find Recipe
-          </SButton>
-        </form>
-      </FormButton>
-      {recipes.map((recipe, index) => {
-        let theKey = index + Math.floor(Math.random() * 10000000);
-        return (
-          <BoxBox>
-            <Recipe
-              key={theKey}
-              title={recipe.recipe.label}
-              image={recipe.recipe.image}
-              ingredients={recipe.recipe.ingredients}
-              email={appUser.email}
-              dietLabels={recipe.recipe.dietLabels}
-              url={recipe.recipe.url}
+    <BG>
+      <div>
+        <NavBar />
+        <FBox>
+          <Fbutton
+            className="filter"
+            type="toggle"
+            style={{
+              backgroundColor: vegan === "" ? "lightgreen" : "coral",
+            }}
+            onClick={() => {
+              SelectVegan();
+            }}
+          >
+            Vegan
+          </Fbutton>
+          <Fbutton
+            className="filter"
+            type="toggle"
+            style={{
+              backgroundColor: peanuts === "" ? "lightgreen" : "coral",
+            }}
+            onClick={() => {
+              SelectPeanuts();
+            }}
+          >
+            No Peanuts
+          </Fbutton>
+          <Fbutton
+            className="filter"
+            type="toggle"
+            style={{
+              backgroundColor: vegetarian === "" ? "lightgreen" : "coral",
+            }}
+            onClick={() => {
+              SelectVegetarian();
+            }}
+          >
+            Vegetarian
+          </Fbutton>
+        </FBox>
+        <FormButton>
+          <form onSubmit={getSearch} className="search-form">
+            <Input
+              className="search-bar"
+              type="text"
+              value={search}
+              onChange={updateSearch}
             />
-          </BoxBox>
-        );
-      })}
-    </div>
+            <SButton className="search-button" type="submit">
+              Find Recipe
+            </SButton>
+          </form>
+        </FormButton>
+        <Grid>
+          {recipes.map((recipe, index) => {
+            let theKey = index + Math.floor(Math.random() * 10000000);
+            return (
+              <Recipe
+                key={theKey}
+                title={recipe.recipe.label}
+                image={recipe.recipe.image}
+                ingredients={recipe.recipe.ingredients}
+                email={appUser.email}
+                dietLabels={recipe.recipe.dietLabels}
+                url={recipe.recipe.url}
+              />
+            );
+          })}
+        </Grid>
+      </div>
+    </BG>
   ) : (
     <div>loading</div>
   );
 }
 
+const FBox = styled.div`
+  margin-left: 34vw;
+`;
+
+const Grid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 4vh;
+  margin-right: 10vw;
+  margin-left: 10vw;
+`;
+
+const BG = styled.div`
+  background: url(${HP}) repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 380vh;
+  z-index: -100000;
+`;
+
 const Fbutton = styled.button`
   padding: 10px;
-  margin-left: 5vw;
+  margin-left: 2vw;
   margin-top: 2vh;
   border-radius: 8px;
   width: 6vw;
   height: 4vh;
-`;
-
-const BoxBox = styled.div`
-  padding: 15px;
 `;
 
 const FormButton = styled.div`
@@ -162,13 +183,8 @@ const FormButton = styled.div`
   width: 25vw;
   z-index: 3;
   display: flex;
-  margin-left: 7vw;
+  margin-left: 35vw;
   margin-top: 4vh;
-`;
-
-const RecipeBox = styled.div`
-  display: flex;
-  justify-content: space-around;
 `;
 
 const Input = styled.input`
