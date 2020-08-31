@@ -3,6 +3,7 @@ import sendGroceries from "./grocerybutton";
 import deleteFavorite from "./deletefavoritehelper";
 import appUser from "./AuthContext";
 import { AuthContext } from "./AuthContext";
+import { confirmAlert } from "react-confirm-alert";
 
 import styled from "styled-components";
 
@@ -30,14 +31,18 @@ export default function Favori({
       </Link>
       <Button
         onClick={() => {
-          deleteFavorite(title, ingredients, email, dietLabels, url, image);
+          if (window.confirm("Remove from Favorites?")) {
+            deleteFavorite(title, ingredients, email, dietLabels, url, image);
+          }
         }}
       >
         Remove from Favorites
       </Button>
       <Button
         onClick={() => {
-          sendGroceries(title, ingredients, email, dietLabels, url, image);
+          if (window.confirm("Add to Groceries?")) {
+            sendGroceries(title, ingredients, email, dietLabels, url, image);
+          }
         }}
       >
         Add to Groceries
@@ -104,7 +109,7 @@ const Fav = styled.div`
   margin-bottom: 1vh;
   margin-right: 1vw;
   margin-left: 1vw;
-  padding: 25px;
+  padding: 5px;
   transition: all 0.3s ease-in-out;
   &:hover {
     transform: scale(1.05);

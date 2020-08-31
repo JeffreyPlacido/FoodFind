@@ -4,7 +4,6 @@ import sendFavorites from "./favoritesbutton";
 import styled from "styled-components";
 
 const Recipe = ({ title, image, ingredients, email, dietLabels, url }) => {
-  console.log(ingredients, "INGREDIENTS");
   return (
     <RecipeBox>
       <Title>{title}</Title>
@@ -22,14 +21,18 @@ const Recipe = ({ title, image, ingredients, email, dietLabels, url }) => {
       <>
         <button
           onClick={() => {
-            sendFavorites(title, ingredients, email, dietLabels, url, image);
+            if (window.confirm("Add to Favorites?")) {
+              sendFavorites(title, ingredients, email, dietLabels, url, image);
+            }
           }}
         >
           add to favorites
         </button>
         <button
           onClick={() => {
-            sendGroceries(title, ingredients, email, dietLabels, url, image);
+            if (window.confirm("Add to Groceries?")) {
+              sendGroceries(title, ingredients, email, dietLabels, url, image);
+            }
           }}
         >
           add to groceries
@@ -44,14 +47,11 @@ const Title = styled.h1`
 
 const RecipeBox = styled.div`
   display: flex;
-  flex-direction: column;
   border-radius: 10px;
   box-shadow: 0px 5px 5px grey;
   align-items: center;
   justify-content: space-around;
   padding: 15px;
-  height: 60%;
-  min-width: 40%;
   margin-top: 20vh;
   background: lightgreen;
 `;

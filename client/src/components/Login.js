@@ -5,11 +5,11 @@ import { useHistory } from "react-router-dom";
 import appBG from "../assests/appBG.jpeg";
 import styled from "styled-components";
 
-import { TweenMax, TimelineMax, Power3 } from "gsap";
-
 function Login() {
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const { signInWithGoogle } = useContext(AuthContext);
+  const { signInWithGoogle, handleSignOut, appUser, setAppUser } = useContext(
+    AuthContext
+  );
   const history = useHistory();
 
   function handleGoogleSignIn() {

@@ -1,7 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import appUser from "./AuthContext";
+import { AuthContext } from "./AuthContext";
 
 export default function Navbar() {
+  const { handleSignOut } = React.useContext(AuthContext);
+
+  function SignOut() {
+    handleSignOut();
+  }
+
   return (
     <NavBar>
       <Div>
@@ -13,7 +21,7 @@ export default function Navbar() {
       <Divthree>
         <a href="/grocerylist">Groceries</a>
       </Divthree>
-      <Out>
+      <Out onClick={SignOut}>
         <a href="/">Sign Out</a>
       </Out>
     </NavBar>

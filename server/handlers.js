@@ -53,44 +53,55 @@ const handleUserFavorites = async (req, res) => {
 
 async function handleGetUser(req, res) {
   console.log(req.body);
-  try {
-    const client = await MongoClient(MONGO_URI, { useUnifiedTopology: true });
+  const email = req.body.email;
+  const client = await MongoClient(MONGO_URI, { useUnifiedTopology: true });
 
-    await client.connect();
+  await client.connect();
 
-    const db = client.db("foodfind");
+  const db = client.db("foodfind");
 
-    const addUser = await db.collection("users").insertOne(req.body);
+  db.collection("users").findOne({ email }, (err, result) => {
+    if (result) {
+      res.status(200).json({ status: 200, email, data: result });
+    } else {
+      try {
+        const db = client.db("foodfind");
+        db.collection("users").insertOne(req.body, { unique: true });
 
-    assert.equal(1, addUser.insertedCount);
-
-    client.close();
-
-    res.status(201).json({ status: 201, data: req.body });
-  } catch ({ message }) {
-    res.status(500).json({ status: 500, message });
-  }
+        res.status(201).json({ status: 201, data: req.body });
+      } catch (err) {
+        res
+          .status(500)
+          .json({ status: 500, data: req.body, message: err.message });
+      }
+    }
+  });
 }
 
 async function handleGetFavorites(req, res) {
-  console.log(req.body);
-  try {
-    const client = await MongoClient(MONGO_URI, { useUnifiedTopology: true });
+  const ordernumber = req.body.ordernumber;
+  const client = await MongoClient(MONGO_URI, { useUnifiedTopology: true });
 
-    await client.connect();
+  await client.connect();
 
-    const db = client.db("foodfind");
+  const db = client.db("foodfind");
 
-    const addUser = await db.collection("favorites").insertOne(req.body);
+  db.collection("favorites").findOne({ ordernumber }, (err, result) => {
+    if (result) {
+      res.status(200).json({ status: 200, ordernumber, data: result });
+    } else {
+      try {
+        const db = client.db("foodfind");
+        db.collection("favorites").insertOne(req.body, { unique: true });
 
-    assert.equal(1, addUser.insertedCount);
-
-    client.close();
-
-    res.status(201).json({ status: 201, data: req.body });
-  } catch ({ message }) {
-    res.status(500).json({ status: 500, message });
-  }
+        res.status(201).json({ status: 201, data: req.body });
+      } catch (err) {
+        res
+          .status(500)
+          .json({ status: 500, data: req.body, message: err.message });
+      }
+    }
+  });
 }
 
 async function handleGetGroceries(req, res) {
@@ -115,6 +126,9 @@ async function handleGetGroceries(req, res) {
 }
 
 const handleDeleteGroceries = async (req, res) => {
+  console.log("in");
+  console.log(req.body, "BODYBODYBODY");
+
   const id = req.body._id;
   const client = await MongoClient(MONGO_URI, { useUnifiedTopology: true });
 
@@ -122,7 +136,9 @@ const handleDeleteGroceries = async (req, res) => {
     await client.connect();
 
     const db = client.db("foodfind");
-    const favorites = await db.collection("groceries").deleteOne(req.body);
+    const favorites = await db
+      .collection("groceries")
+      .deleteOne({ ordernumber: req.body.ordernumber });
 
     assert.equal(1, favorites.deletedCount);
 

@@ -6,7 +6,15 @@ import deleteGrocery from "./deleteGroceryHelper";
 import styled from "styled-components";
 import Bg from "../assests/404BG.jpg";
 
-export default function Profile() {
+export default function Profile({
+  title,
+  image,
+  ordernumber,
+  ingredients,
+  email,
+  dietLabels,
+  url,
+}) {
   const { appUser } = useContext(AuthContext);
   const [list, setList] = useState([]);
 
@@ -35,14 +43,22 @@ export default function Profile() {
       <BGP>
         <NavBar></NavBar>
         {list.map((item) => (
-          <Recipe>{item.ordernumber}</Recipe>
+          <Recipe>
+            {item.ordernumber}
+            <DButton
+              onClick={() => {
+                deleteGrocery(item);
+              }}
+            >
+              Remove
+            </DButton>
+          </Recipe>
         ))}
         {list.map((item) => (
           <List>
             {item.groceries.map((groceries) => (
               <Food>{groceries.text}</Food>
             ))}
-            <DButton>Remove</DButton>
           </List>
         ))}
       </BGP>
@@ -53,6 +69,7 @@ export default function Profile() {
 }
 const BGP = styled.div`
   width: 100vw;
+  height: 100vh;
   background: url(${Bg}) repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
@@ -60,12 +77,18 @@ const BGP = styled.div`
 `;
 
 const Recipe = styled.div`
+  display: flex;
+  color: darkgreen;
+  font-size: 25px;
+  padding: 3px;
+  font-weight: bold;
   margin-left: 40vw;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 `;
 
 const DButton = styled.button`
   cursor: pointer;
+  margin-left: 20px;
 `;
 
 const List = styled.div`
