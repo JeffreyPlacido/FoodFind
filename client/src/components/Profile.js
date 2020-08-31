@@ -69,7 +69,7 @@ const Fix = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin-top: 8vh;
+  margin-top: 2vh;
 `;
 
 const FavBox = styled.div``;

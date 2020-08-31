@@ -104,7 +104,7 @@ const Fav = styled.div`
   margin-bottom: 1vh;
   margin-right: 1vw;
   margin-left: 1vw;
-  padding: 5px;
+  padding: 25px;
   transition: all 0.3s ease-in-out;
   &:hover {
     transform: scale(1.05);

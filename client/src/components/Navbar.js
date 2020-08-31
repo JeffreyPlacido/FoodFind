@@ -24,7 +24,6 @@ const NavBar = styled.nav`
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   display: grid;
   grid-template-columns: 6% 8% 8% 1fr;
-  position: absolute;
   width: 100vw;
   min-height: 7vh;
   background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
