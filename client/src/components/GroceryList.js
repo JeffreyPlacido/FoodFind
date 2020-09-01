@@ -69,7 +69,7 @@ export default function Profile({
 }
 const BGP = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 500vh;
   background: url(${Bg}) repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
@@ -77,23 +77,35 @@ const BGP = styled.div`
 `;
 
 const Recipe = styled.div`
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+  font-size: 3vh;
   display: flex;
-  color: darkgreen;
-  font-size: 25px;
-  padding: 3px;
+  color: crimson;
+  font-size: 3vh;
+  padding: 10px;
   font-weight: bold;
   margin-left: 40vw;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 `;
 
 const DButton = styled.button`
+  margin-left: 10px;
+  color: darkgreen;
+  background: mintcream;
+  border-radius: 5px;
   cursor: pointer;
-  margin-left: 20px;
+  font-weight: bold;
+  &:hover {
+    background: coral;
+  }
 `;
 
 const List = styled.div`
   margin-left: 40vw;
+  margin-bottom: 4vh;
   padding: 4px;
+  font-size: 2vh;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 `;
 

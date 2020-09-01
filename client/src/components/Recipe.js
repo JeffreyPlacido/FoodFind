@@ -47,6 +47,9 @@ const Title = styled.h1`
 
 const URL = styled.div`
   padding: 10px;
+  a {
+    color: coral;
+  }
 `;
 
 const Button = styled.button`

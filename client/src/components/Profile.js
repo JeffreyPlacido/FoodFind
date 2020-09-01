@@ -63,6 +63,7 @@ const BG = styled.div`
   background-size: cover;
   background-attachment: fixed;
   position: absolute;
+  height: 750vh;
 `;
 
 const Fix = styled.div`
