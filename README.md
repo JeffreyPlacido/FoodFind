@@ -13,4 +13,4 @@ Filtered Search
 <img src="assests\ribs2.PNG" style="width: 100%;" />
 
 Favorited Items Page
-<img src=".assests\fav.PNG" style="width: 100%;" />
+<img src="assests\fav.PNG" style="width: 100%;" />
