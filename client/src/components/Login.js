@@ -63,14 +63,18 @@ const Button = styled.button`
   height: 3%;
   position: absolute;
   top: 55%;
-  left: 39%;
+  left: 40%;
   font-size: 20px;
+  border-radius: 4px;
+  border: none;
+  background: grey;
+  color: white;
+  &:hover {
+    background-color: coral;
+  }
 `;
 
-const Container = styled.div`
-  left: 0;
-  top: 0;
-`;
+const Container = styled.div``;
 
 const Hero = styled.div`
   display: flex;
@@ -87,6 +91,9 @@ const BG = styled.div`
   width: 105%;
   height: 103%;
 `;
-const Name = styled.h1``;
+const Name = styled.h1`
+  margin-top: 11vh;
+  color: crimson;
+`;
 
 export default Login;
